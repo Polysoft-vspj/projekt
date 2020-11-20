@@ -1,3 +1,15 @@
+   <?php
+  
+// Starting the session, to use and 
+// store data in session variable 
+session_start(); 
+ if (!IsSet($nazev)) $nazev="";
+  if (!IsSet($orderby)) $orderby="";
+
+  require("connect.php");
+ 
+?> 
+
 <!DOCTYPE html>
 
 <html lang="cs">
@@ -6,6 +18,48 @@
 
 <head>
 
+   <style>
+   #Redaktor, #Sefredaktor{
+visibility: hidden;
+}
+</style>
+
+ <?php if($_SESSION['uzivatel_admin']==3 ){ ?>
+
+   <style>
+   #Sefredaktor{
+visibility: visible;
+}
+</style>
+
+<?php }
+
+ ?>
+ 
+ 
+ 
+  <?php if($_SESSION['uzivatel_admin']==1 ){ ?>
+
+   <style>
+   #Redaktor{
+visibility: visible;
+}
+</style>
+
+<?php }
+
+ ?>
+ 
+        <?php if($_SESSION['uzivatel_admin']==4 ){ ?>
+
+   <style>
+   #Redaktor,#Sefredaktor{
+visibility: visible;
+}
+</style>
+ <?php }
+
+ ?>
 
 
   <meta charset="utf-8">
@@ -72,6 +126,24 @@
             <a class="nav-link js-scroll-trigger" href="#">lorem</a>
 
           </li> -->
+		
+		    <li class="nav-item" id="Redaktor">
+
+            <a class="nav-link js-scroll-trigger" href="redaktor/index_redaktor.php">Články Redaktor</a>
+
+          </li> 
+          
+           <li class="nav-item" id="Sefredaktor">
+
+            <a class="nav-link js-scroll-trigger" href="sefredaktor/index_sefredaktor.php">Články Šéfredaktor</a>
+
+          </li> 
+          
+             <li class="nav-item" id="Zpravy">
+
+            <a class="nav-link js-scroll-trigger" href="zpravy/index_zprava.php">Zprávy</a>
+
+          </li> 
 
           <li class="nav-item">
 
