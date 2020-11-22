@@ -425,7 +425,7 @@ Hledání podle názvu článku<BR />
 												echo "<TD  ALIGN=CENTER>" . $zaznam[ "clanky_id" ] . "</TD>";
 												echo "<TD  ALIGN=CENTER>" . $zaznam[ "Nazev_clanku" ] . "</TD>";
 												echo "<TD  ALIGN=CENTER>" . $zaznam[ "Autor_clanku" ] . "</TD>";
-												echo "<TD  ALIGN=CENTER><a href=\"uploads/" . $zaznam[ "url_clanku" ]. "\" download> Download </TD>";
+												echo "<TD  ALIGN=CENTER><a href=\"../uploads/" . $zaznam[ "url_clanku" ]. "\" download> Download </TD>";
 												echo "<TD  ALIGN=CENTER>" . $zaznam[ "Jmeno_recenzenta" ] . "</TD>";
 												echo "<TD  ALIGN=CENTER>" . $zaznam[ "url_recenze" ] . "</TD>";
                                              	echo "<TD  ALIGN=CENTER>" . $zaznam[ "Stav" ] . "</TD>";
