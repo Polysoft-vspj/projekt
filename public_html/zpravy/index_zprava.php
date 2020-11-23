@@ -16,7 +16,88 @@ if (!IsSet($nazev)) $nazev="";
 
 
 <head>
+   
+       <style>
+     #Precteno, #Odeslano, #NoveZpravy, #nove_zpravy_li,#precteno_zpravy_li,#odeslano_zpravy_li {
+visibility: hidden;
+}
+</style>
 
+
+
+ 
+ 
+ 
+  <?php if($_SESSION['uzivatel_admin']==3 ){ ?>
+
+   <style>
+   #Precteno, #Odeslano, #NoveZpravy, #nove_zpravy_li,#precteno_zpravy_li,#odeslano_zpravy_li{
+visibility: visible;
+}
+</style>
+
+<?php }
+
+ ?>
+ 
+   <?php if($_SESSION['uzivatel_admin']==4 ){ ?>
+
+   <style>
+   #Precteno, #Odeslano, #NoveZpravy, #nove_zpravy_li,#precteno_zpravy_li,#odeslano_zpravy_li{
+visibility: visible;
+}
+</style>
+
+<?php }
+
+ ?>
+ 
+    <?php if($_SESSION['uzivatel_admin']==1 ){ ?>
+
+   <style>
+  #Precteno, #Odeslano, #NoveZpravy, #nove_zpravy_li,#precteno_zpravy_li,#odeslano_zpravy_li{
+visibility: visible;
+}
+</style>
+
+<?php }
+
+ ?>
+        <?php if($_SESSION['uzivatel_admin']==2 ){ ?>
+
+   <style>
+  #Precteno, #Odeslano, #NoveZpravy, #nove_zpravy_li,#precteno_zpravy_li,#odeslano_zpravy_li{
+visibility: visible;
+}
+</style>
+
+<?php }
+
+
+
+ ?>
+ 
+         <?php if($_SESSION['uzivatel_admin']==5){ ?>     
+
+   <style>
+   #Precteno, #Odeslano, #NoveZpravy, #nove_zpravy_li,#precteno_zpravy_li,#odeslano_zpravy_li{
+visibility: visible;
+}
+</style>
+
+<?php }
+
+ ?>
+ 
+          <?php if($_SESSION['uzivatel_admin']==NULL){ ?>     
+
+   <style>      
+</style>
+
+<?php }
+
+ ?>
+ 
 
 
   <meta charset="utf-8">
@@ -96,11 +177,12 @@ if (!IsSet($nazev)) $nazev="";
              if(isset($_SESSION['uzivatel_id'])){ ?>
                 <a href="../login/odhlaseni.php"><button type="button" class="btn bg-danger text-light">Odhlásit</button></a>
                   <div style="color: white !important;"><b>Uživatel:&nbsp;<?php echo $_SESSION['uzivatel_jmeno'];?>&nbsp;|&nbsp;Oprávění:&nbsp;<?php
-if($_SESSION['uzivatel_admin']==0)echo Autor;
+if($_SESSION['uzivatel_admin']==5)echo Autor;
 if($_SESSION['uzivatel_admin']==1)echo Redaktor;
 if($_SESSION['uzivatel_admin']==2)echo Recenzent;
 if($_SESSION['uzivatel_admin']==3)echo Šéfredaktor;
 if($_SESSION['uzivatel_admin']==4)echo Admin;
+if($_SESSION['uzivatel_admin']==0)echo Čtenář;
 
 ?>
 
@@ -323,10 +405,10 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 <div class="container" id="Menu_zpravy">
   <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#NoveZpravy">Nové zprávy</a></li>
-    <li><a data-toggle="tab" href="#Precteno">Přečteno</a></li>
-    <li><a data-toggle="tab" href="#Odeslano">Odesláno</a></li>
-     <li><a data-toggle="tab" href="#Napsat">Napsat Zprávu</a></li>
+     <li class="active" id="nove_zpravy_li"><a data-toggle="tab" href="#NoveZpravy">Nové zprávy</a></li>
+    <li id="precteno_zpravy_li"><a data-toggle="tab" href="#Precteno">Přečteno</a></li>
+    <li id="odeslano_zpravy_li"><a data-toggle="tab" href="#Odeslano">Odesláno</a></li>
+     <li id="napsat_zpravy_li"><a data-toggle="tab" href="#Napsat">Napsat Zprávu</a></li>
   </ul>
 
   <div class="tab-content">
