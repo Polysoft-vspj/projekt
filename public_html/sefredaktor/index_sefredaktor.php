@@ -76,7 +76,7 @@ visibility: visible;
 
   <!-- Vlastni css -->
 
-  <link href="css/logoskaskados.css" rel="stylesheet">
+  <link href="../css/logoskaskados.css" rel="stylesheet">
 
 <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
@@ -106,7 +106,7 @@ visibility: visible;
 
     <div class="container">
 
-      <a class="navbar-brand js-scroll-trigger" href="../index.php"><img src="../../img/logo.png" alt="logo" width="30%"></a>
+      <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="../img/logo.png" alt="logo" width="300px"></a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 
@@ -156,23 +156,15 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
       </div>
 
     </div>
+    
+    <a href="../index.php" ><button type="button" class="btn bg-danger text-light">Zpět na hlavní stránku</button></a>
+
 
   </nav>
 
 
 
-  <header class="bg-danger text-white">
-
-    <div class="container text-center">
-
-      <h2>Vítejte v redakci časopisu</h2> <h1><b>LOGOS POLYTECHNIKOS</b></h1>
-
-      <p class="lead">Projekt do předmětu <b><i>Řízení softwarových projeků</i></b> za tým Polysoft</p>
-
-    </div>
-
-  </header>
-
+ 
 
 
   <section id="about">
@@ -388,10 +380,14 @@ Hledání podle názvu článku<BR />
 
 											// spojeni s databazi
 
-											if ( $_GET[ Nazev ] != "" )
-												$Podminka = "WHERE Nazev_clanku LIKE '" . AddSlashes( $_GET[ Nazev ] ) . "%' AND Stav LIKE 'přijato'";      //Stav like 'přijato'
+								//			if ( $_GET[ Nazev ] != "" )
+								//				$Podminka = "WHERE Nazev_clanku LIKE '" . AddSlashes( $_GET[ Nazev ] ) . "%' AND Stav LIKE 'přijato'";      //Stav like 'přijato'
+								//			else
+								//				$Podminka = "WHERE Stav LIKE 'přijato' ";       //Stav like 'přijato'
+                                            if ( $_GET[ Nazev ] != "" )
+												$Podminka = "WHERE Nazev_clanku LIKE '" . AddSlashes( $_GET[ Nazev ] ) . "%' AND Stav LIKE 'přijato' OR Stav LIKE 'nerozhodné' OR Stav LIKE 'přijato s výhradami'";      //Stav like 'přijato'
 											else
-												$Podminka = "WHERE Stav LIKE 'přijato' ";       //Stav like 'přijato'
+												$Podminka = "WHERE Stav LIKE 'přijato' OR Stav LIKE 'nerozhodné' OR Stav LIKE 'přijato s výhradami'";       //Stav like 'přijato'
 
 											if ( $_GET[ orderby ] != "" )
 												$Orderby = "ORDER BY $_GET[orderby]";
@@ -434,6 +430,8 @@ Hledání podle názvu článku<BR />
 
 												//echo "<TD ALIGN=CENTER>" . "<A HREF='upravit.php?oc=$oc' class=\"btn btn-secondary\">Upravit</A></TD>";
                                                 	echo "<TD ALIGN=CENTER>" . "<A HREF='update_zverejneno.php?oc=$oc' class=\"btn btn-success\">Zveřejnit</A></TD>";
+                                                    if ($zaznam['Stav'] == 'nerozhodné')
+                                                    echo "<TD ALIGN=CENTER>" . "<A HREF='update_zamitnuto.php?oc=$oc' class=\"btn btn-danger\">Zamítnout</A></TD>";
                                                // echo " <td ALIGN=CENTER> <button type=\"button\" class=\"btn btn-success\" id=\"btnUpdate_zverejnit\" name=\"zverejnit\"> Zveřejnit </button> "  ;   
                                                   echo "<TR VALIGN=TOP>";                                                    
                                                  		$i = $i + 1;
@@ -524,19 +522,7 @@ Hledání podle názvu článku<BR />
 
 
 
-  <!-- Footer -->
-
-  <footer class="py-5 bg-dark">
-
-    <div class="container">
-
-      <p class="m-0 text-center text-white">Copyright &copy; Polysoft 2020</p>
-
-    </div>
-
-    <!-- /.container -->
-
-  </footer>
+ 
 
 
 
@@ -559,7 +545,19 @@ Hledání podle názvu článku<BR />
   <script src="js/scrolling-nav.js"></script>
 
 
+ <!-- Footer -->
 
+  <footer class="py-5 bg-dark">
+
+    <div class="container">
+
+      <p class="m-0 text-center text-white">Copyright &copy; Polysoft 2020</p>
+
+    </div>
+
+    <!-- /.container -->
+
+  </footer>
 </body>
 
 

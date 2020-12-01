@@ -17,9 +17,9 @@ session_start();
 
 
 <head>
-
+  
    <style>
-   #Redaktor, #Sefredaktor{
+   #Redaktor, #Sefredaktor,#Autor,#Administrator,#Recenzent{
 visibility: hidden;
 }
 </style>
@@ -35,9 +35,30 @@ visibility: visible;
 <?php }
 
  ?>
- 
- 
- 
+
+<?php if($_SESSION['uzivatel_admin']!=1&&$_SESSION['uzivatel_admin']!=2&&$_SESSION['uzivatel_admin']!=3&&$_SESSION['uzivatel_admin']!=4&&$_SESSION['uzivatel_admin']!=5 ){ ?>
+
+   <style>
+   #schovat{
+visibility: hidden;
+}
+#schovat{
+visibility: hidden;
+}
+
+.ukazat{
+visibility: hidden;
+}
+
+</style>
+
+<?php }
+
+ ?>
+
+
+
+
   <?php if($_SESSION['uzivatel_admin']==1 ){ ?>
 
    <style>
@@ -49,11 +70,23 @@ visibility: visible;
 <?php }
 
  ?>
+
+    <?php if($_SESSION['uzivatel_admin']==2 ){ ?>
+
+        <style>
+            #Recenzent{
+                visibility: visible;
+            }
+        </style>
+
+    <?php }
+
+    ?>
  
         <?php if($_SESSION['uzivatel_admin']==4 ){ ?>
 
    <style>
-   #Redaktor,#Sefredaktor{
+   #Redaktor,#Sefredaktor,#Autor,#Administrator, #Recenzent{
 visibility: visible;
 }
 </style>
@@ -61,6 +94,16 @@ visibility: visible;
 
  ?>
 
+    <?php if($_SESSION['uzivatel_admin']==5 ){ ?>
+
+        <style>
+            #Autor{
+                visibility: visible;
+            }
+        </style>
+    <?php }
+
+    ?>
 
   <meta charset="utf-8">
 
@@ -109,7 +152,7 @@ visibility: visible;
 
     <div class="container">
 
-      <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="img/logo.png" alt="logo" width="30%"></a>
+      <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="img/logo.png" alt="logo" width="300px"></a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 
@@ -126,32 +169,94 @@ visibility: visible;
             <a class="nav-link js-scroll-trigger" href="#">lorem</a>
 
           </li> -->
-		
-		    <li class="nav-item" id="Redaktor">
+            <li class="nav-item" id="Administrator">
 
-            <a class="nav-link js-scroll-trigger" href="redaktor/index_redaktor.php">Články Redaktor</a>
+                <a class="nav-link js-scroll-trigger" href="administrator/index.php"><b>Administrátor</b></a>
+
+            </li>
+            <li class="nav-item" id="Autor">
+
+                <a class="nav-link js-scroll-trigger" href="autor/index.php"><b>Autor</b></a>
+
+            </li>
+             <li class="nav-item" id="Redaktor">
+
+            <a class="nav-link js-scroll-trigger" href="redaktor/index_redaktor.php"><b>Redaktor</b></a>
 
           </li> 
           
            <li class="nav-item" id="Sefredaktor">
 
-            <a class="nav-link js-scroll-trigger" href="sefredaktor/index_sefredaktor.php">Články Šéfredaktor</a>
+            <a class="nav-link js-scroll-trigger" href="sefredaktor/index_sefredaktor.php"><b>Šéfredaktor</b></a>
 
-          </li> 
+          </li>
           
-             <li class="nav-item" id="Zpravy">
+          <li class="nav-item" id="Recenzent">
 
-            <a class="nav-link js-scroll-trigger" href="zpravy/index_zprava.php">Zprávy</a>
+            <a class="nav-link js-scroll-trigger" href="Recenzent/index.php"><b>Recenzent</b></a>
+
+	  <li class="nav-item" id="Clanky">
+
+                <a class="nav-link js-scroll-trigger" href="kappa/index_clanky.php"><b>Články</b></a>
+
+          </li>
+
+          </li>  
+          <li class="nav-item" id="Zpravy">
+
+            <a class="nav-link js-scroll-trigger" href="zpravy/index_zprava.php"><b>Zprávy</b></a>
 
           </li> 
 
-          <li class="nav-item">
+             
+         
 
-            <?php
-            session_start();
+        </ul>
+      </div>
+
+
+
+    </div>
+<ul class="navbar-nav ml-auto">
+
+
+
+ <div id="schovat" style="color: white !important;"><b>Uživatel:&nbsp;<?php echo $_SESSION['uzivatel_jmeno'];?>&nbsp;|&nbsp;Oprávění:&nbsp;<?php
+                          if($_SESSION['uzivatel_admin']==0)echo Čtenář;
+                          if($_SESSION['uzivatel_admin']==5)echo Autor;
+if($_SESSION['uzivatel_admin']==1)echo Redaktor;
+if($_SESSION['uzivatel_admin']==2)echo Recenzent;
+if($_SESSION['uzivatel_admin']==3)echo Šéfredaktor;
+if($_SESSION['uzivatel_admin']==4)echo Admin;
+
+
+     
+
+
+
+
+?>
+
+
+
+
+</b></div>
+<li class="" id="">
+
+            <a class="nav-link js-scroll-trigger"> </a>
+
+          </li> 
+
+<?php
+            
              if(isset($_SESSION['uzivatel_id'])){ ?>
+         
+<li class="nav-item">
+
+            
                 <a href="login/odhlaseni.php"><button type="button" class="btn bg-danger text-light">Odhlásit</button></a> 
-                    <?php if (isset($_GET['uzivatel_id']))
+                 
+ <?php if (isset($_GET['uzivatel_id']))
                 {
 	               session_destroy();
 	               header('Location: ../index.php');
@@ -162,11 +267,7 @@ visibility: visible;
 
           </li>
 
-        </ul>
-
-      </div>
-
-    </div>
+</ul>
 
   </nav>
 
@@ -300,14 +401,20 @@ doc. Ing. Libor Žídek, Ph.D. (Masarykova univerzita Brno)<br/></p>
 
         
 
-<h3>Aktuální ročník/číslo časopisu</h3>
-
-     <i>todo</i>  
-
-<h3>Archiv</h3>    
-
-     <i>todo</i>
-
+<h5>Aktuální ročník/číslo časopisu</h5>
+<p><a href="http://www.vspj.cz/soubory/download/id/7778">2020/Ročník 11/Číslo 1<br /></a><a href="http://www.vspj.cz/soubory/download/id/7874" title="Logos Polytechnikos 2/2020">2020/Ročník 11/Číslo 2</a></p>
+<h5></h5>
+<h5>Archiv</h5>
+<p><a href="http://www.vspj.cz/soubory/download/id/7354">2019/Ročník 10/Číslo1<br /></a><a href="http://www.vspj.cz/soubory/download/id/7454">2019/Ročník 10/Číslo 2<br /></a><a href="http://www.vspj.cz/soubory/download/id/7648" title="Logos Polytechnikos 3/2019">2019/Ročník 10/Číslo 3</a></p>
+<p><a href="http://www.vspj.cz/soubory/download/id/6942">2018/Ročník 9/Číslo 1<br /></a><a href="http://www.vspj.cz/soubory/download/id/6914">2018/Ročník 9/Číslo 2 </a><br /><a href="http://www.vspj.cz/soubory/download/id/7192">2018/Ročník 9/Číslo 3</a><br /><a href="http://www.vspj.cz/soubory/download/id/7408">2018/Ročník 9/Číslo 4</a></p>
+<p><a href="http://www.vspj.cz/soubory/download/id/5966">2017/Ročník 8/Číslo 1<br /></a><a href="http://www.vspj.cz/soubory/download/id/6130">2017/Ročník 8/Číslo 2</a><br /><a href="http://www.vspj.cz/soubory/download/id/6282">2017/Ročník 8/Číslo 3<br /></a><a href="http://www.vspj.cz/soubory/download/id/6564">2017/Ročník 8/Číslo 4</a></p>
+<p><a href="http://www.vspj.cz/soubory/download/id/5087">2016/Ročník 7/Číslo 1 <br /></a><a href="http://www.vspj.cz/soubory/download/id/5303">2016/Ročník 7/Číslo 2 <br /></a><a href="http://www.vspj.cz/soubory/download/id/6027">2016/Ročník 7/Číslo 3<br /></a><a href="http://www.vspj.cz/soubory/download/id/5711">2016/Ročník 7/Číslo 4</a></p>
+<p><a href="http://www.vspj.cz/soubory/download/id/5083">2015/Ročník 6/Číslo 1</a><a href="http://www.vspj.cz/soubory/download/id/2962"><br /> </a><a href="http://www.vspj.cz/soubory/download/id/5084">2015/Ročník 6/Číslo 2</a><a href="http://www.vspj.cz/soubory/download/id/5085"><br />2015/Ročník 6/Číslo 3<br /></a><a href="http://www.vspj.cz/soubory/download/id/5086">2015/Ročník 6/Číslo 4</a></p>
+<p><a href="http://www.vspj.cz/soubory/download/id/5079">2014/Ročník 5/Číslo 1</a><a href="http://www.vspj.cz/soubory/download/id/2962"><br /> </a><a href="http://www.vspj.cz/soubory/download/id/5080">2014/Ročník 5/Číslo 2</a><a href="http://www.vspj.cz/soubory/download/id/2962"><br /> </a><a href="http://www.vspj.cz/soubory/download/id/5081">2014/Ročník 5/Číslo 3<br /></a><a href="http://www.vspj.cz/soubory/download/id/5082">2014/Ročník 5/Číslo 4</a></p>
+<p><a href="http://www.vspj.cz/soubory/download/id/5075">2013/Ročník 4/Číslo 1</a><br /> <a href="http://www.vspj.cz/soubory/download/id/5076">2013/Ročník 4/Číslo 2</a><br /> <a href="http://www.vspj.cz/soubory/download/id/5077">2013/Ročník 4/Číslo 3</a><br /> <a href="http://www.vspj.cz/soubory/download/id/5078">2013/Ročník 4/Číslo 4</a></p>
+<p><a href="http://www.vspj.cz/soubory/download/id/5071">2012/Ročník 3/Číslo 1</a><br /> <a href="http://www.vspj.cz/soubory/download/id/5072">2012/Ročník 3/Číslo 2</a><br /> <a href="http://www.vspj.cz/soubory/download/id/5121">2012/Ročník 3/Číslo 3</a><br /><a href="http://www.vspj.cz/soubory/download/id/5074">2012/Ročník 3/Číslo 4</a></p>
+<p><a href="https://www.vspj.cz/soubory/download/id/5067">2011/Ročník 2/Číslo 1</a><br /> <a href="https://www.vspj.cz/soubory/download/id/5068">2011/Ročník 2/Číslo 2</a><br /><a href="https://www.vspj.cz/soubory/download/id/5069">2011/Ročník 2/Číslo 3</a><br /> <a href="https://www.vspj.cz/soubory/download/id/5070">2011/Ročník 2/Číslo 4</a></p>
+<p><a href="https://www.vspj.cz/soubory/download/id/5063">2010/Ročník 1/Číslo 1</a><br /> <a href="https://www.vspj.cz/soubory/download/id/5064">2010/Ročník 1/Číslo 2</a><br /> <a href="https://www.vspj.cz/soubory/download/id/5065">2010/Ročník 1/Číslo 3</a><br /> <a href="https://www.vspj.cz/soubory/download/id/5066">2010/Ročník 1/Číslo 4</a></p>
        
 
        
@@ -440,22 +547,7 @@ doc. Ing. Libor Žídek, Ph.D. (Masarykova univerzita Brno)<br/></p>
 
                      </div>         
 
-                      
-
-                         
-
-                            
-
-                               
-
-                                  
-
-                                        
-
-          
-
-          
-
+                
         </div>
 
       </div>
@@ -465,48 +557,6 @@ doc. Ing. Libor Žídek, Ph.D. (Masarykova univerzita Brno)<br/></p>
   </section>
 
 
-
-  <!-- <section id="" class="bg-light">
-
-    <div class="container">
-
-      <div class="row">
-
-        <div class="col-lg-8 mx-auto">
-
-          <h2>helpdesk we offer</h2>
-
-          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut optio velit inventore, expedita quo laboriosam possimus ea consequatur vitae, doloribus consequuntur ex. Nemo assumenda laborum vel, labore ut velit dignissimos.</p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-
-  <section id="">
-
-    <div class="container">
-
-      <div class="row">
-
-        <div class="col-lg-8 mx-auto">
-
-          <h2>Login us</h2>
-
-          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section> -->
 
 
 

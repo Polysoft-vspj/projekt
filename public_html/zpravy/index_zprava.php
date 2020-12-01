@@ -18,7 +18,7 @@ if (!IsSet($nazev)) $nazev="";
 <head>
    
        <style>
-     #Precteno, #Odeslano, #NoveZpravy, #nove_zpravy_li,#precteno_zpravy_li,#odeslano_zpravy_li {
+     #Precteno, #Odeslano, #NoveZpravy, #nove_zpravy_li,#precteno_zpravy_li,#odeslano_zpravy_li, #email_ctenar {
 visibility: hidden;
 }
 </style>
@@ -91,16 +91,20 @@ visibility: visible;
  
           <?php if($_SESSION['uzivatel_admin']==NULL){ ?>     
 
-   <style>      
+   <style>    
+   #email_ctenar  {
+visibility: visible;
+}
 </style>
 
 <?php }
 
  ?>
  
+ 
+ 
 
-
-  <meta charset="utf-8">
+  <meta charset="utf-8" content="text/html;charset=UTF-8">
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -152,7 +156,7 @@ visibility: visible;
 
     <div class="container">
 
-      <a class="navbar-brand js-scroll-trigger" href="../index.php"><img src="../img/logo.png" alt="logo" width="30%"></a>
+      <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="../img/logo.png" alt="logo" width="300px"></a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 
@@ -203,23 +207,12 @@ if($_SESSION['uzivatel_admin']==0)echo Čtenář;
       </div>
 
     </div>
-
+           <a href="../index.php" ><button type="button" class="btn bg-danger text-light">Zpět na hlavní stránku</button></a>
   </nav>
 
 
 
-  <header class="bg-danger text-white">
-
-    <div class="container text-center">
-
-      <h2>Vítejte v redakci časopisu</h2> <h1><b>LOGOS POLYTECHNIKOS</b></h1>
-
-      <p class="lead">Projekt do předmětu <b><i>Řízení softwarových projeků</i></b> za tým Polysoft</p>
-
-    </div>
-
-  </header>
-
+  
 
 
 
@@ -263,156 +256,39 @@ if($_SESSION['uzivatel_admin']==0)echo Čtenář;
         <?php endif ?>
     </div>
 
-
-
-
-
-		  <div class="modal fade" role="dialog" id="loginModal">
-
-       <div class="modal-dialog">
-
-        <div class="modal-content">
-
-        <div class="modal-header">
-
-         <div class="box">
-
-
-
-  <h2>Login</h2>
-
-
-
-  <form action="">
-
-
-
-    <!-- Login -->
-
-
-
-    <div class="login-form">
-
-
-
-      <label for="username">Username</label>
-
-      <input type="text" id="username" placeholder="Username">
-
-
-
-      <label for="password">Password</label>
-
-      <input type="password" id="password" placeholder="Password">
-
-
-
-    </div>
-
-
-
-    <!-- Register -->
-
-
-
-    <div class="register-form">
-
-
-
-      <label for="first-name">First Name</label>
-
-      <input disabled type="text" id="first-name" placeholder="First Name">
-
-
-
-      <label for="last-name">Last Name</label>
-
-      <input disabled type="text" id="last-name" placeholder="Last Name">
-
-
-
-      <label for="email">E-mail Adress</label>
-
-      <input disabled type="text" id="email" placeholder="E-mail Address">
-
-
-
-      <label for="confirm-email">Confirm E-mail Address</label>
-
-      <input disabled type="text" id="confirm-email" placeholder="Confirm E-mail Address">
-
-
-
-      <div class="captcha">
-
-        <label for="captcha">What is <strong>10 + 3</strong>?</label>
-
-        <input disabled type="text" id="captcha" placeholder="Your answer">
-
-
-
-      </div>
-
-
-
-    </div>
-
-
-
-    <!-- Submit -->
-
-
-
-    <input type="submit" id="submit" value="Login">
-
-
-
-    <!-- Help -->
-
-
-
-    <a href="#" class="register">Register!</a>
-
-    <a href="#" class="forgot-password" title="Forgot password?">Forgot?</a>
-
-
-
-  </form>
-
-</div>
-
-       </div>
-
-
-
-           </div>
-
-                     </div>
-
-                     </div>
-
-
-
-
-
+                           
 <hr />
- <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <!--
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" >
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+     -->
 
 
-<div class="container" id="Menu_zpravy">
-  <ul class="nav nav-tabs">
-     <li class="active" id="nove_zpravy_li"><a data-toggle="tab" href="#NoveZpravy">Nové zprávy</a></li>
-    <li id="precteno_zpravy_li"><a data-toggle="tab" href="#Precteno">Přečteno</a></li>
-    <li id="odeslano_zpravy_li"><a data-toggle="tab" href="#Odeslano">Odesláno</a></li>
-     <li id="napsat_zpravy_li"><a data-toggle="tab" href="#Napsat">Napsat Zprávu</a></li>
-  </ul>
 
-  <div class="tab-content">
-    <div style="min-height: 400px;" id="NoveZpravy" class="tab-pane fade in active">
+  
+   <section>
+   
+
+
+<div class="container" id="Menu_zpravy"   style=" position: relative;  top: 20%;bot: 20%;">
+
+  
+   <ul class="nav nav-tabs justify-content-center">
+    <li class="nav-item" id="nove_zpravy_li">                <a class="nav-link"  data-toggle="tab" href="#NoveZpravy"  role="tab"   aria-selected="true">    Nové zprávy</a></li>
+    <li class="nav-item" id="precteno_zpravy_li">            <a class="nav-link"  data-toggle="tab" href="#Precteno"   role="tab"  aria-selected="false">      Přečteno</a></li>
+    <li class="nav-item" id="odeslano_zpravy_li">            <a class="nav-link"  data-toggle="tab" href="#Odeslano"   role="tab"  aria-selected="false">      Odesláno</a></li>
+    <li class="nav-item" id="napsat_zpravy_li">              <a class="nav-link"  data-toggle="tab" href="#Napsat"   role="tab"  aria-selected="false">        Napsat Zprávu</a></li>
+    
+   
+    </ul >
+  
+
+         
+      
+ 
+  <div class="tab-content" >  
+    <div  style="min-height: 400px;" id="NoveZpravy" class="tab-pane fade in active">
 
                 <?php
                 /* Attempt MySQL server connection. Assuming you are running MySQL
@@ -434,6 +310,7 @@ if($_SESSION['uzivatel_admin']==0)echo Čtenář;
                   echo "<tr>";
                     echo "<th>Datum</th>";
                       echo "<th>Odesílatel</th>";
+                      echo "<th>E-mail</th>";
                      echo "<th>Text</th>";
 
 
@@ -450,6 +327,7 @@ if($_SESSION['uzivatel_admin']==0)echo Čtenář;
                     //  echo "" . $a++ . "";
                         echo "<td>" . $row['Datum'] . "</td>";
                       echo "<td>" . $row['Odesilatel'] . "</td>";
+                       echo "<td>" . $row['email'] . "</td>";
                          echo "<td>" . $row['Obsah'] . "</td>";
                          echo "<TD ALIGN=CENTER>" . "<A HREF='smazat_zpravu.php?oc=$oc' class=\"btn btn-danger\">Smazat</A></TD>";
                          echo "<TD ALIGN=CENTER>" . "<A HREF='update_zprava.php?oc=$oc' class=\"btn btn-info\">Přečteno</A></TD>";
@@ -505,6 +383,7 @@ if($_SESSION['uzivatel_admin']==0)echo Čtenář;
         echo "<tr>";
           echo "<th>Datum</th>";
             echo "<th>Odesílatel</th>";
+            echo "<th>E-mail</th>";
            echo "<th>Text</th>";
 
 
@@ -519,6 +398,7 @@ if($_SESSION['uzivatel_admin']==0)echo Čtenář;
           //  echo "" . $a++ . "";
               echo "<td>" . $row['Datum'] . "</td>";
             echo "<td>" . $row['Odesilatel'] . "</td>";
+            echo "<td>" . $row['email'] . "</td>";
                echo "<td>" . $row['Obsah'] . "</td>";
                echo "<TD ALIGN=CENTER>" . "<A HREF='smazat_zpravu.php?oc=$oc' class=\"btn btn-danger\">Smazat</A></TD>";
                echo "<TD ALIGN=CENTER>" . "<A HREF='update_zprava_neprecteno.php?oc=$oc' class=\"btn btn-warning\">Nepřečteno</A></TD>";
@@ -602,12 +482,9 @@ if($_SESSION['uzivatel_admin']==0)echo Čtenář;
       ?>
     </div>
 
-    <div id="Napsat" class="tab-pane fade">
+    <div id="Napsat"  style="min-height: 400px; "  class="tab-pane fade">                 
 
-
-                <div id="Napsat_zpravu">
-
-  <section id="Napsat_zpravu">
+  <section  style="min-height: 400px;max-height: 600px;" id="Napsat_zpravu">
   <div class="container">
     <div class="row">
       <div class="col-lg-8 mx-auto">
@@ -619,25 +496,63 @@ if($_SESSION['uzivatel_admin']==0)echo Čtenář;
           <div class="form-group">
           <label for="nazev">Odesilatel:</label>
           <!--<input type="text" class="form-control" id="Odesilatel" placeholder="Odesílatel" name="Odesilatel">   d-m-Y H:i:s    -->
-          <input type="text" class="form-control" id="Odesilatel" value="<?PHP if($name != NULL) echo $name; else echo "Ctenar" ?>" name="Odesilatel"  readonly>
+          <input type="text" class="form-control" id="Odesilatel" value="<?PHP if($name != NULL) echo $name; else echo "Ctenar" ?>" name="Odesilatel"  hidden>
           </div>
           <div class="form-group">
-              <label for="Prijemce">Pro:</label>
-              <input type="text" class="form-control" id="Prijemce" placeholder="Prijemce" name="Prijemce">
+              <label for="Prijemce">Pro:</label> Pro:
+                       <select  class="form-control" name="Prijemce"  id="Prijemce" >  <?php
+                                
+                                
+                                $sql = "SELECT * FROM uzivatele";
+                                $vysledekm = mysqli_query($spojeni, $sql);  
+                                
+                                while($row = mysqli_fetch_array($vysledekm))
+                                {
+                                ?>  <option value="<?php echo $row["jmeno"];?>"     >
+                                    	<?php  
+                                          if($row["admin"] == 0)  echo $row["jmeno"] ." (Čtenář)"; 
+                                          if($row["admin"] == 1)  echo $row["jmeno"] ." (Redaktor)"; 
+                                          if($row["admin"] == 2)  echo $row["jmeno"] ." (Recenzent)"; 
+                                          if($row["admin"] == 3)  echo $row["jmeno"] ." (Šéfredaktor)"; 
+                                          if($row["admin"] == 4)  echo $row["jmeno"] ." (Admin)"; 
+                                          if($row["admin"] == 5)  echo $row["jmeno"] ." (Autor)"; 
+                                          if($row["admin"] == 6)  echo $row["jmeno"] ." (Help Desk)";                                           
+                                        
+                                        
+                                        ?>
+                                  	</option>
+                                            
+                                <?php
+                                } 
+                                 ?>
+                                 </select>
+              <!--  <input type="text" class="form-control" id="Prijemce" placeholder="Prijemce" name="Prijemce">   -->
           </div>
           <div class="form-group">
-              <label for="Obsah">Obsah:</label>
-              <input type="textarea" class="form-control" id="Obsah" placeholder="Zpráva + Pro čtenáře: Email pro odpověď" name="Obsah">
+              <label for="Obsah">Obsah:</label>  Obsah:
+              <textarea class="form-control" rows="4" cols="50" id="Obsah" placeholder="Zpráva" name="Obsah">    </textarea>
           </div>
+          
+          <div class="form-group" id='email_ctenar'>
+              <?php
+                               if($row["admin"] == 0) echo "
+                               <label for=\"email\">Email:</label>
+                               <input type=\"email\" placeholder=\"E-mail pro odpověď\" class=\"form-control\" id=\"email\" name=\"email\">";
+                                 ?>
+                                      
+                  </div>
+                  
           <div class="form-group">
             <label for="Datum">Datum:</label>
-            <input type="text" class="form-control" id="Datum" placeholder="Datum" name="Datum" value="<?PHP  echo date("Y-m-d H:i:s ") ;?>"  readonly>
+            <input type="text" class="form-control" id="Datum" placeholder="Datum" name="Datum" value="<?PHP  echo date("Y-m-d H:i:s ") ;?>"  hidden>
 
           </div>
+           
           <div class="form-group">
              <input type="submit" class="btn btn-danger" value="Poslat" name="submit">
           </div>
         </form>
+
 
 
       </div>
@@ -719,7 +634,7 @@ if($_SESSION['uzivatel_admin']==0)echo Čtenář;
 
   <!-- Footer -->
 
-  <footer class="py-5 bg-dark">
+  <footer class="py-5 bg-dark" >
 
     <div class="container">
 

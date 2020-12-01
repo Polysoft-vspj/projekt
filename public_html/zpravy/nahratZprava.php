@@ -1,3 +1,4 @@
+  <meta charset="utf-8" content="text/html;charset=UTF-8">
 <?php
  session_start();
 /* Attempt MySQL server connection. Assuming you are running MySQL
@@ -8,7 +9,7 @@ if($link === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
 
-$sql = "INSERT INTO Zpravy (Odesilatel, Prijemce , Obsah, Datum) values('$_POST[Odesilatel]','$_POST[Prijemce]', '$_POST[Obsah]', '$_POST[Datum]')";
+$sql = "INSERT INTO Zpravy (Odesilatel, Prijemce , Obsah, Datum, email) values('$_POST[Odesilatel]','$_POST[Prijemce]', '$_POST[Obsah]', '$_POST[Datum]','$_POST[email]')";
 
 if (mysqli_query($link, $sql)) {    
     echo "zaznam byl uspesne pridan\n";
@@ -23,4 +24,4 @@ header('Location: index.php');
 mysqli_close($link);
 */
 ?>
-<button><a href="index_zprava.php">Zpìt</button>
+<button><a href="index_zprava.php">ZpÄ›t</button>
