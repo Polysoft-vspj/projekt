@@ -61,7 +61,7 @@ session_start();
 
              if(isset($_SESSION['uzivatel_id'])){ ?>
 
-                <a href="login/odhlaseni.php"><button type="button" class="btn bg-danger text-light">Odhlásit</button></a> 
+                <a href="../login/odhlaseni.php"><button type="button" class="btn bg-danger text-light">Odhlásit</button></a>
 
                   <div style="color: white !important;"><b>Uživatel:&nbsp;<?php echo $_SESSION['uzivatel_jmeno'];?>&nbsp;|&nbsp;Oprávění:&nbsp;<?php
 
@@ -121,104 +121,184 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
   </nav>
 
 
-
-
-
-
-
-
   <section id="about">
 
 
-
-   
-
-
-                   
 
 <div class="container">
             <A HREF="new_uziv.php" class="btn btn-primary">Přidat nového uživatele</A>&nbsp;&nbsp;
 </div>
 
-<hr />                            
+<hr />
 
 <div class="container">
 
+        <div>
 
-<?php
+            Hledání podle názvu uživatele<BR />
 
-											// spojeni s databazi
-
-											$sql = "select * from uzivatele ORDER BY uzivatele_id";
-
-											$vysledek = mysqli_query( $spojeni, $sql );
-
-											echo "<TABLE class='table' class='table-striped' BORDER=0 CELLSPACING=0 CELLPADDING=4>\n";
-
-											echo "<TR BGCOLOR=lightgrey VALIGN=TOP>\n";
-
-											echo "<TH>Id uživatele</TH>\n";
-
-											echo "<TH>Jméno</TH>\n";
-
-											echo "<TH>Oprávění</TH  >\n";
-
-											echo "<TH colspan='2'></TH></tr>\n";
+            <FORM ACTION=index.php method=get>
 
 
+                <div class="input-group mb-3 w-50" >
+
+
+                    <INPUT type="text"  class="form-control" placeholder="Nazev" NAME=Nazev SIZE=11 VALUE="<?php echo $_GET[Nazev] ?>">
+
+                    <div class="input-group-append">
+
+
+                        <INPUT TYPE=SUBMIT type="text" class="form-control" placeholder="Nazev" VALUE="hledej">
+
+
+                    </div>
+
+
+                </div>
+
+                <INPUT TYPE=HIDDEN type="text"  placeholder="Názvu" NAME=orderby VALUE="<?php echo $_GET[orderby]?>">
+
+            </FORM>
+
+
+            <HR>
+
+            <?php
 
 
 
-											if ( mysqli_num_rows( $vysledek ) > 0 ) {
-												while ( $zaznam = mysqli_fetch_assoc( $vysledek ) ):
+            //30
 
-													$oc = $zaznam[ "uzivatele_id" ];
 
-												echo "<TD  ALIGN=CENTER>" . $zaznam[ "uzivatele_id" ] . "</TD>";
 
-												echo "<TD  ALIGN=CENTER>" . $zaznam[ "jmeno" ] . "</TD>";
+            function TlacitkoProRazeni( $polozka, $popis ) {
 
-												echo "<TD  ALIGN=CENTER>" ?>
-                                                    <?php
-                                                    if($zaznam[ "admin" ]==0)echo Čtenář;
 
-                                                    if($zaznam[ "admin" ]==1)echo Redaktor;
 
-                                                    if($zaznam[ "admin" ]==2)echo Recenzent;
+                global $Nazev;
 
-                                                    if($zaznam[ "admin" ]==3)echo Šéfredaktor;
 
-                                                    if($zaznam[ "admin" ]==4)echo Admin;
 
-                                                    if($zaznam[ "admin" ]==5)echo Autor;?>
-                                                    <?php
-                                                     "</TD>";
+                return "<A HREF='?orderby=$polozka&$Nazev=" .
 
-												echo "<TD ALIGN=CENTER>" . "<A HREF='uprav_uziv.php?oc=$oc' class=\"btn btn-secondary\">Upravit</A></TD>";
 
-												echo "<TD ALIGN=CENTER>" . "<A HREF='heslo_update.php?oc=$oc' class=\"btn btn-secondary\">Změna hesla</A></TD>";
 
-												echo "<TD ALIGN=CENTER>" . "<A HREF='smazat.php?oc=$oc' class=\"btn btn-danger\">Smazat</A></TD>";
+                    URLEncode( $_GET[ Nazev ] ) . "'>" . "<i class=\"fas fa-angle-down\"></i></A>&nbsp;" . $popis  ."&nbsp;".
 
-												echo "<TR VALIGN=TOP>";
 
-												$i = $i + 1;
 
-												endwhile;
+                    "<A HREF='?orderby=$polozka+DESC&$Nazev=" .
 
-											} else {
 
-												echo "0 nalezených záznamů";
 
-											}
+                    URLEncode( $_GET[ Nazev ] ) . "'>" . "<i class=\"fas fa-angle-up\"></i></A>";
 
-											echo "</TABLE>";
-											mysqli_close( $spojeni );
 
-											?>
 
-  
+            }
 
+
+            // spojeni s databazi
+
+
+            if ( $_GET[ Nazev ] != "" )
+
+                $Podminka = "WHERE jmeno LIKE '" . AddSlashes( $_GET[ Nazev ] ) . "%'";
+
+            else
+
+                $Podminka = "";
+
+
+            if ( $_GET[ orderby ] != "" )
+
+                $Orderby = "ORDER BY $_GET[orderby]";
+
+            else
+
+                $Orderby = "ORDER BY uzivatele_id";
+
+
+
+            $sql = "select * from uzivatele " . $Podminka . $Orderby;
+
+
+            $vysledek = mysqli_query( $spojeni, $sql );
+
+
+            echo "<TABLE class='table' class='table-striped' BORDER=0 CELLSPACING=0 CELLPADDING=0>\n";
+
+
+            echo "<TR BGCOLOR=lightgrey VALIGN=TOP style=\"text-align:center\" >\n";
+
+
+            echo "<TH>" . TlacitkoProRazeni( "uzivatele_id", "ID" ) . "</TH>\n";
+
+
+            echo "<TH>" . TlacitkoProRazeni( "jmeno", "Jméno" ) . "</TH>\n";
+
+
+            echo "<TH>" . TlacitkoProRazeni( "admin", "Oprávnění" ) . "</TH>\n";
+
+
+            echo "<TH colspan='2'></TH></tr>\n";
+
+            if ( mysqli_num_rows( $vysledek ) > 0 ) {
+
+
+                while ( $zaznam = mysqli_fetch_assoc( $vysledek ) ):
+
+                    $oc = $zaznam[ "uzivatele_id" ];
+
+
+                    echo "<TD  ALIGN=CENTER>" . $zaznam[ "uzivatele_id" ] . "</TD>";
+
+                    echo "<TD  ALIGN=CENTER>" . $zaznam[ "jmeno" ] . "</TD>";
+
+                    echo "<TD  ALIGN=CENTER>" ?>
+                    <?php
+                    if($zaznam[ "admin" ]==0)echo Čtenář;
+
+                    if($zaznam[ "admin" ]==1)echo Redaktor;
+
+                    if($zaznam[ "admin" ]==2)echo Recenzent;
+
+                    if($zaznam[ "admin" ]==3)echo Šéfredaktor;
+
+                    if($zaznam[ "admin" ]==4)echo Admin;
+
+                    if($zaznam[ "admin" ]==5)echo Autor;?>
+                    <?php
+                    "</TD>";
+
+                    echo "<TD ALIGN=CENTER>" . "<A HREF='uprav_uziv.php?oc=$oc' class=\"btn btn-secondary\">Upravit</A></TD>";
+
+                    echo "<TD ALIGN=CENTER>" . "<A HREF='heslo_update.php?oc=$oc' class=\"btn btn-secondary\">Změna hesla</A></TD>";
+
+                    echo "<TD ALIGN=CENTER>" . "<A HREF='smazat.php?oc=$oc' class=\"btn btn-danger\">Smazat</A></TD>";
+
+                    echo "<TR VALIGN=TOP>";
+
+                    $i = $i + 1;
+
+                endwhile;
+
+            } else {
+
+                echo "0 nalezených záznamů";
+
+            }
+
+
+            echo "</TABLE>";
+
+            mysqli_close( $spojeni );
+
+            ?>
+
+            <HR>
+
+        </div>
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

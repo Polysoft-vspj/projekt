@@ -50,7 +50,7 @@
 
 
 
-<BODY>
+<body id="page-top" style="background-image: url(../img/bbgt.png)">
 
 
 

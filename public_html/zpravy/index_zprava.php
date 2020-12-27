@@ -274,11 +274,16 @@ if($_SESSION['uzivatel_admin']==0)echo Čtenář;
 <div class="container" id="Menu_zpravy"   style=" position: relative;  top: 20%;bot: 20%;">
 
   
-   <ul class="nav nav-tabs justify-content-center">
-    <li class="nav-item" id="nove_zpravy_li">                <a class="nav-link"  data-toggle="tab" href="#NoveZpravy"  role="tab"   aria-selected="true">    Nové zprávy</a></li>
-    <li class="nav-item" id="precteno_zpravy_li">            <a class="nav-link"  data-toggle="tab" href="#Precteno"   role="tab"  aria-selected="false">      Přečteno</a></li>
-    <li class="nav-item" id="odeslano_zpravy_li">            <a class="nav-link"  data-toggle="tab" href="#Odeslano"   role="tab"  aria-selected="false">      Odesláno</a></li>
-    <li class="nav-item" id="napsat_zpravy_li">              <a class="nav-link"  data-toggle="tab" href="#Napsat"   role="tab"  aria-selected="false">        Napsat Zprávu</a></li>
+   <ul class="nav nav-pills justify-content-center" id="myTab" role="tablist">
+    	<li class="nav-item active" id="nove_zpravy_li"> 
+		<a class="nav-link active"  data-toggle="tab" href="#NoveZpravy"  role="tab" aria-controls="NoveZpravy"  aria-selected="true">
+    		Nové zprávy</a>
+	</li>
+
+
+    <li class="nav-item" id="precteno_zpravy_li">            <a class="nav-link"  data-toggle="pill" href="#Precteno"   role="tab"  aria-selected="false">      Přečteno</a></li>
+    <li class="nav-item" id="odeslano_zpravy_li">            <a class="nav-link"  data-toggle="pill" href="#Odeslano"   role="tab"  aria-selected="false">      Odesláno</a></li>
+    <li class="nav-item" id="napsat_zpravy_li">              <a class="nav-link"  data-toggle="pill" href="#Napsat"   role="tab"  aria-selected="false">        Napsat Zprávu</a></li>
     
    
     </ul >
@@ -288,7 +293,7 @@ if($_SESSION['uzivatel_admin']==0)echo Čtenář;
       
  
   <div class="tab-content" >  
-    <div  style="min-height: 400px;" id="NoveZpravy" class="tab-pane fade in active">
+    <div  style="min-height: 400px;" id="NoveZpravy" class="tab-pane fade show active">
 
                 <?php
                 /* Attempt MySQL server connection. Assuming you are running MySQL
@@ -303,7 +308,7 @@ if($_SESSION['uzivatel_admin']==0)echo Čtenář;
                 // Attempt select query execution
                 $name = strip_tags($_SESSION['uzivatel_jmeno']); //$name = strip_tags($_GET['uzivatel_jmeno']);
                 echo "<b>Zprávy pro:</b>" . $name . "<br>"  ; //otestovani koho hledám
-                $sql = "SELECT * FROM Zpravy WHERE Prijemce= '".$name."' AND zobrazeno=0 ORDER BY Datum DESC";
+                $sql = "SELECT * FROM Zpravy WHERE Prijemce= '".$name."' AND zobrazeno=0 AND helpdesk=0  ORDER BY Datum DESC";
                 if($result = mysqli_query($spojeni, $sql)){
                 if(mysqli_num_rows($result) > 0){
                 echo "<table class=\"table table-dark\">";
@@ -376,7 +381,7 @@ if($_SESSION['uzivatel_admin']==0)echo Čtenář;
       // Attempt select query execution
       $name = strip_tags($_SESSION['uzivatel_jmeno']); //$name = strip_tags($_GET['uzivatel_jmeno']);
       echo "<b>Zprávy pro:</b>" . $name . "<br>"  ; //otestovani koho hledám
-      $sql = "SELECT * FROM Zpravy WHERE Prijemce= '".$name."' AND zobrazeno = '1' ORDER BY Datum DESC";
+      $sql = "SELECT * FROM Zpravy WHERE Prijemce= '".$name."' AND zobrazeno = '1' AND helpdesk=0  ORDER BY Datum DESC";
       if($result = mysqli_query($spojeni, $sql)){
       if(mysqli_num_rows($result) > 0){
       echo "<table class=\"table table-dark\">";
@@ -439,7 +444,7 @@ if($_SESSION['uzivatel_admin']==0)echo Čtenář;
       // Attempt select query execution
       $name = strip_tags($_SESSION['uzivatel_jmeno']); //$name = strip_tags($_GET['uzivatel_jmeno']);
       echo "<b>Zprávy pro:</b>" . $name . "<br>"  ; //otestovani koho hledám
-      $sql = "SELECT * FROM Zpravy WHERE Odesilatel = '".$name."' ORDER BY Datum DESC";
+      $sql = "SELECT * FROM Zpravy WHERE Odesilatel = '".$name."' AND helpdesk=0  ORDER BY Datum DESC";
       if($result = mysqli_query($spojeni, $sql)){
       if(mysqli_num_rows($result) > 0){
       echo "<table class=\"table table-dark\">";
@@ -634,7 +639,8 @@ if($_SESSION['uzivatel_admin']==0)echo Čtenář;
 
   <!-- Footer -->
 
-  <footer class="py-5 bg-dark" >
+ <footer class="py-5 bg-dark">
+
 
     <div class="container">
 

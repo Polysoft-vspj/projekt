@@ -104,3 +104,9 @@ input:focus {
 #submit ~ a:hover {
   text-decoration: underline;
 }
+
+.login {
+  width:350px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

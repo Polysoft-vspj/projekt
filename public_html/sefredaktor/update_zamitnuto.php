@@ -3,7 +3,7 @@
 require("connect.php");
 
   $sql = "UPDATE clanky SET odeslat_autor = '1' WHERE clanky_id = '$_GET[oc]'";
-  $sql = "UPDATE clanky SET Stav = 'vráceno z dùvodu tématické nevhodnosti' WHERE clanky_id = '$_GET[oc]'";
+  $sql = "UPDATE clanky SET Stav = 'zamÃ­tnuto' WHERE clanky_id = '$_GET[oc]'";
 
 if (mysqli_query($spojeni, $sql)) {
   

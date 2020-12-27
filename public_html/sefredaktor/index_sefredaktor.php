@@ -118,11 +118,13 @@ visibility: visible;
 
         <ul class="navbar-nav ml-auto">
 
-           <li class="nav-item">
+        <li class="nav-item">
 
-            <a class="nav-link js-scroll-trigger" href="../index.php">Zprávy</a>
+            <a class="nav-link js-scroll-trigger" href="vsechny_clanky.php">Všechny články</a>
 
-          </li> 
+          </li>
+
+           
 
           <li class="nav-item">
 
@@ -398,16 +400,16 @@ Hledání podle názvu článku<BR />
 
 
 											$vysledek = mysqli_query( $spojeni, $sql );
-											echo "<TABLE class='table' class='table-striped' BORDER=0 CELLSPACING=0 CELLPADDING=4>\n";
-											echo "<TR BGCOLOR=lightgrey VALIGN=TOP>\n";
-											echo "<TH>" . TlacitkoProRazeni( "clanky_id", " Id článku" ) . " </TH>\n";
-											echo "<TH>" . TlacitkoProRazeni( "Nazev_clanku", " Název článku" ) . " </TH>\n";
-											echo "<TH>" . TlacitkoProRazeni( "Autor_clanku", " Autor článku" ) . " </TH>\n";
-											echo "<TH>" . TlacitkoProRazeni( "url_clanku", " URL článku" ) . " </TH>\n";
-											echo "<TH>" . TlacitkoProRazeni( "Jmeno_recenzenta", " Jméno recenzenta" ) . " </TH>\n";
-											echo "<TH>" . TlacitkoProRazeni( "url_recenze", " URL recenze" ) . "<br> </TH>\n";
-                                            echo "<TH>" . TlacitkoProRazeni( "stav", " Stav" ) . "</TH>\n";
-                                             echo "<TH>" . TlacitkoProRazeni( "Zverejneno", " Zveřejněno" ) . "</TH>\n";
+											echo "<TABLE class='table' class='table-striped' BORDER=0 CELLSPACING=0 CELLPADDING=0>\n";
+											echo "<TR BGCOLOR=lightgrey VALIGN=TOP style=\"text-align:center\"  >\n";
+											echo "<TH  >" . TlacitkoProRazeni( "clanky_id", "ID" ) . " </TH>\n";
+											echo "<TH>" . TlacitkoProRazeni( "Nazev_clanku", "Název" ) . " </TH>\n";
+											echo "<TH>" . TlacitkoProRazeni( "Autor_clanku", "<i class=\"far fa-user\" data-toggle=\"tooltip\" title=\"Autor článku\" ></i>" ) . " </TH>\n";
+											echo "<TH>" . TlacitkoProRazeni( "url_clanku",  "<i class=\"fas fa-paperclip\" data-toggle=\"tooltip\" title=\"URL článku\" ></i>" ) . " </TH>\n";
+											echo "<TH>" . TlacitkoProRazeni( "Jmeno_recenzenta", "<i class=\"fas fa-user\" data-toggle=\"tooltip\" title=\"Jméno recenzenta\" ></i>" ) . " </TH>\n";
+											echo "<TH>" . TlacitkoProRazeni( "url_recenze", "<i class=\"fas fa-paperclip\" data-toggle=\"tooltip\" title=\"URL recenze\" ></i>" ) . "<br> </TH>\n";
+                                            echo "<TH >" . TlacitkoProRazeni( "stav", "<i class=\"fas fa-info-circle\" data-toggle=\"tooltip\" title=\"Stav recenze\" ></i>" ) . "</TH>\n";
+                                            echo "<TH >" . TlacitkoProRazeni( "Zverejneno", "<i class=\"fas fa-upload\" data-toggle=\"tooltip\" title=\"Zveřejnit\"></i>" ) . "</TH>\n";
 											echo "<TH colspan='1'></TH></tr>\n";
 
 
@@ -418,14 +420,14 @@ Hledání podle názvu článku<BR />
 
 
 													$oc = $zaznam[ "clanky_id" ];
-												echo "<TD  ALIGN=CENTER>" . $zaznam[ "clanky_id" ] . "</TD>";
+												echo "<TD  ALIGN=CENTER>" ."&nbsp;&nbsp;&nbsp;&nbsp;". $zaznam[ "clanky_id" ] ."&nbsp;&nbsp;&nbsp;&nbsp;". "</TD>";
 												echo "<TD  ALIGN=CENTER>" . $zaznam[ "Nazev_clanku" ] . "</TD>";
 												echo "<TD  ALIGN=CENTER>" . $zaznam[ "Autor_clanku" ] . "</TD>";
 												echo "<TD  ALIGN=CENTER><a href=\"../uploads/" . $zaznam[ "url_clanku" ]. "\" download> Download </TD>";
 												echo "<TD  ALIGN=CENTER>" . $zaznam[ "Jmeno_recenzenta" ] . "</TD>";
 												echo "<TD  ALIGN=CENTER>" . $zaznam[ "url_recenze" ] . "</TD>";
                                              	echo "<TD  ALIGN=CENTER>" . $zaznam[ "Stav" ] . "</TD>";
-                                                echo "<TD  ALIGN=CENTER>" . $zaznam[ "Zverejneno" ] . "</TD>";
+                                                echo "<TD  ALIGN=CENTER>" ."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;". $zaznam[ "Zverejneno" ] ."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;". "</TD>";
 												//echo "<TD ALIGN=CENTER>" . "<A HREF='smazat.php?oc=$oc' class=\"btn btn-danger\">Smazat</A></TD>";
 
 												//echo "<TD ALIGN=CENTER>" . "<A HREF='upravit.php?oc=$oc' class=\"btn btn-secondary\">Upravit</A></TD>";
@@ -545,6 +547,12 @@ Hledání podle názvu článku<BR />
   <script src="js/scrolling-nav.js"></script>
 
 
+	<script>
+                $(document).ready(function () {
+                    $('[data-toggle="tooltip"]').tooltip();
+                });
+            </script>
+	
  <!-- Footer -->
 
   <footer class="py-5 bg-dark">

@@ -1,9 +1,11 @@
-  <meta charset="utf-8" content="text/html;charset=UTF-8">
+ 
+  
 <?php
 require("connect.php");
  session_start();
 /* Attempt MySQL server connection. Assuming you are running MySQL
 server with default setting (user 'root' with no password) */
+
 //$link = mysqli_connect("localhost", "testserverpolysw", "5r8Xcxv6", "testserverpolysw");
 // Check connection
 if($spojeni === false){

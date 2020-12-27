@@ -214,7 +214,7 @@ if (file_exists($target_file)) {
 
 
 
-if ($_FILES["fileToUpload"]["size"] > 500000) {
+if ($_FILES["fileToUpload"]["size"] > 50000000) {
 
 
 

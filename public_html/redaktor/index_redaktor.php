@@ -688,7 +688,7 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 
-<hr /> 
+<hr > 
 </section>
 <section>       
 
@@ -764,11 +764,11 @@ Hledání podle názvu článku<BR />
 
 											if ( $_GET[ Nazev ] != "" )
 
-												$Podminka = "WHERE Nazev_clanku LIKE '" . AddSlashes( $_GET[ Nazev ] ) . "%' AND Stav like 'podáno' AND odeslat_autor like '0'";
+												$Podminka = "WHERE Nazev_clanku LIKE '" . AddSlashes( $_GET[ Nazev ] ) . "%' AND odeslat_autor like '0'";
 
 											else
 
-												$Podminka = "  WHERE Stav LIKE 'podáno' AND odeslat_autor like '0'";
+												$Podminka = "  WHERE odeslat_autor like '0'";
 
 
 
@@ -792,21 +792,21 @@ Hledání podle názvu článku<BR />
 
 											echo "<TABLE   class='table' class='table-striped' BORDER=0 CELLSPACING=0 CELLPADDING=4>\n";
 
-											echo "<TR BGCOLOR=lightgrey VALIGN=TOP>\n";
+											echo "<TR BGCOLOR=lightgrey VALIGN=TOP style=\"text-align:center\" >\n";
 
-											echo "<TH>" . TlacitkoProRazeni( "clanky_id", "Id článku" ) . "</TH>\n";
+											echo "<TH>" . TlacitkoProRazeni( "clanky_id", "ID" ) . "</TH>\n";
 
-											echo "<TH>" . TlacitkoProRazeni( "Nazev_clanku", "Název článku" ) . "</TH>\n";
+											echo "<TH>" . TlacitkoProRazeni( "Nazev_clanku", "Název" ) . "</TH>\n";
 
-											echo "<TH>" . TlacitkoProRazeni( "Autor_clanku", "Autor článku" ) . "</TH>\n";
+											echo "<TH>" . TlacitkoProRazeni( "Autor_clanku", "<i class=\"far fa-user\" data-toggle=\"tooltip\" title=\"Autor článku\" ></i>" ) . "</TH>\n";
 
-											echo "<TH>" . TlacitkoProRazeni( "url_clanku", "URL článku" ) . "</TH>\n";
+											echo "<TH>" . TlacitkoProRazeni( "url_clanku", "<i class=\"fas fa-paperclip\" data-toggle=\"tooltip\" title=\"URL článku\" ></i>" ) . "</TH>\n";
 
-											echo "<TH>" . TlacitkoProRazeni( "Jmeno_recenzenta", "Jméno recenzenta" ) . "</TH>\n";
+											echo "<TH>" . TlacitkoProRazeni( "Jmeno_recenzenta", "<i class=\"fas fa-user\" data-toggle=\"tooltip\" title=\"Jméno recenzenta\" ></i>" ) . "</TH>\n";
 
-											echo "<TH>" . TlacitkoProRazeni( "url_recenze", "URL recenze" ) . "</TH>\n";
+											//echo "<TH>" . TlacitkoProRazeni( "url_recenze", "URL recenze" ) . "</TH>\n";
 
-											echo "<TH>" . TlacitkoProRazeni( "Stav", "Stav recenze" ) . "</TH>\n";
+											echo "<TH>" . TlacitkoProRazeni( "Stav", "<i class=\"fas fa-info-circle\" data-toggle=\"tooltip\" title=\"Stav recenze\" ></i>" ) . "</TH>\n";
 
                                             	
 
@@ -832,7 +832,7 @@ Hledání podle názvu článku<BR />
 
                                                     
 
-												echo "<TD  ALIGN=CENTER>" . $zaznam[ "clanky_id" ] . "</TD>";
+												echo "<TD  ALIGN=CENTER>" ."&nbsp;&nbsp;&nbsp;&nbsp;". $zaznam[ "clanky_id" ] ."&nbsp;&nbsp;&nbsp;&nbsp;". "</TD>";
 
 												echo "<TD  ALIGN=CENTER>" . $zaznam[ "Nazev_clanku" ] . "</TD>";
 
@@ -842,9 +842,9 @@ Hledání podle názvu článku<BR />
 
 												echo "<TD  ALIGN=CENTER>" . $zaznam[ "Jmeno_recenzenta" ] . "</TD>";
 
-												echo "<TD  ALIGN=CENTER>" . $zaznam[ "url_recenze" ] . "</TD>";
+												//echo "<TD  ALIGN=CENTER>" . $zaznam[ "url_recenze" ] . "</TD>";
 
-                        	echo "<TD  ALIGN=CENTER>" . $zaznam[ "Stav" ] . "</TD>";
+                        						echo "<TD  ALIGN=CENTER>" . $zaznam[ "Stav" ] . "</TD>";
 
                                                   
 
@@ -1107,7 +1107,11 @@ Hledání podle názvu článku<BR />
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
 
-
+<script>
+                $(document).ready(function () {
+                    $('[data-toggle="tooltip"]').tooltip();
+                });
+            </script>
 
 
 
