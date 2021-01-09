@@ -17,7 +17,7 @@ $vysledek = mysqli_query($spojeni, $sql);
 $radek = mysqli_fetch_assoc($vysledek);
   
 $oc=$radek[clanky_id];
-echo "Chcete žáka opravdu smazat? <BR>";
+echo "Chcete článek opravdu smazat? <BR>";
 
 echo " Id článku: ".$radek[clanky_id]."<BR> ";
 echo "Název článku:        ". $radek[Nazev_clanku]."<BR> ";

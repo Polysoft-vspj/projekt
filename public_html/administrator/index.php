@@ -65,16 +65,12 @@ session_start();
 
                   <div style="color: white !important;"><b>Uživatel:&nbsp;<?php echo $_SESSION['uzivatel_jmeno'];?>&nbsp;|&nbsp;Oprávění:&nbsp;<?php
 
-                          if($_SESSION['uzivatel_admin']==0)echo Čtenář;
-                          if($_SESSION['uzivatel_admin']==5)echo Autor;
-
-if($_SESSION['uzivatel_admin']==1)echo Redaktor;
-
-if($_SESSION['uzivatel_admin']==2)echo Recenzent;
-
-if($_SESSION['uzivatel_admin']==3)echo Šéfredaktor;
-
-if($_SESSION['uzivatel_admin']==4)echo Admin;
+                          if($_SESSION['uzivatel_admin']==0)echo "<i class='fas fa-book-reader' title='Čtenář'></i>"; 
+                          if($_SESSION['uzivatel_admin']==5)echo "<i class='fas fa-at' title='Autor'></i>"; 
+if($_SESSION['uzivatel_admin']==1)echo "<i class='fas fa-newspaper' title='Redaktor'></i>";
+if($_SESSION['uzivatel_admin']==2)echo "<i class='fas fa-search'title='Recenzent'></i>"; 
+if($_SESSION['uzivatel_admin']==3)echo "<i class='fas fa-users-cog' title='Šéfredaktor'></i>";
+if($_SESSION['uzivatel_admin']==4)echo "<i class='fas fa-user-shield' title='Admin'></i>";
 
 
 
@@ -241,7 +237,7 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
             echo "<TH>" . TlacitkoProRazeni( "admin", "Oprávnění" ) . "</TH>\n";
 
 
-            echo "<TH colspan='2'></TH></tr>\n";
+            echo "<TH colspan='3'></TH></tr>\n";
 
             if ( mysqli_num_rows( $vysledek ) > 0 ) {
 

@@ -122,7 +122,7 @@ visibility: visible;
   <!-- Bootstrap -->
 
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+<script src="https://kit.fontawesome.com/42a8bf28eb.js" crossorigin="anonymous"></script>
 
 
   <!-- Vlastni css -->
@@ -227,12 +227,12 @@ visibility: visible;
 
 
  <div id="schovat" style="color: white !important;"><b>Uživatel:&nbsp;<?php echo $_SESSION['uzivatel_jmeno'];?>&nbsp;|&nbsp;Oprávění:&nbsp;<?php
-                          if($_SESSION['uzivatel_admin']==0)echo Čtenář;
-                          if($_SESSION['uzivatel_admin']==5)echo Autor;
-if($_SESSION['uzivatel_admin']==1)echo Redaktor;
-if($_SESSION['uzivatel_admin']==2)echo Recenzent;
-if($_SESSION['uzivatel_admin']==3)echo Šéfredaktor;
-if($_SESSION['uzivatel_admin']==4)echo Admin;
+                          if($_SESSION['uzivatel_admin']==0)echo "<i class='fas fa-book-reader' title='Čtenář'></i>"; 
+                          if($_SESSION['uzivatel_admin']==5)echo "<i class='fas fa-at' title='Autor'></i>"; 
+if($_SESSION['uzivatel_admin']==1)echo "<i class='fas fa-newspaper' title='Redaktor'></i>";
+if($_SESSION['uzivatel_admin']==2)echo "<i class='fas fa-search'title='Recenzent'></i>"; 
+if($_SESSION['uzivatel_admin']==3)echo "<i class='fas fa-users-cog' title='Šéfredaktor'></i>";
+if($_SESSION['uzivatel_admin']==4)echo "<i class='fas fa-user-shield' title='Admin'></i>";
 
 
      
@@ -258,8 +258,10 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
          
 <li class="nav-item">
 
-            
-                <a href="login/odhlaseni.php"><button type="button" class="btn bg-danger text-light">Odhlásit</button></a> 
+            	<a href="profil/index.php"><button type="button" class="btn bg-light text-dark"><b>Profil</b></button></a>
+                <a href="login/odhlaseni.php"><button type="button" class="btn bg-danger text-light"><b>Odhlásit</b></button></a>
+		
+
                  
  <?php if (isset($_GET['uzivatel_id']))
                 {

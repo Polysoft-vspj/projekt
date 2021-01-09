@@ -160,7 +160,7 @@ if ($uploadOk == 0) {
 
 }
 
-$sql = "INSERT INTO clanky (clanky_id, Nazev_clanku, Autor_clanku, url_clanku) values('$_POST[clanky_id]','$_POST[Nazev_clanku]','$_POST[Autor_clanku]', '$download')";
+$sql = "INSERT INTO clanky (clanky_id, Nazev_clanku, Autor_clanku, url_clanku, cislo_c) values('$_POST[clanky_id]','$_POST[Nazev_clanku]','$_POST[Autor_clanku]', '$download', '$_POST[cislo]')";
 
 //$sql = "UPDATE uzivatele SET admin = '$_GET[selectpravo]' WHERE jmeno='$_GET[nazev_uziv]'";
 

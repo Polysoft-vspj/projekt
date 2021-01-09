@@ -93,13 +93,12 @@ require("connect.php");
                 <a href="../login/odhlaseni.php"><button type="button" class="btn bg-danger text-light">Odhlásit</button></a> 
                   <div style="color: white !important;"><b>Uživatel:&nbsp;<?php echo $_SESSION['uzivatel_jmeno'];?>&nbsp;|&nbsp;Oprávění:&nbsp;<?php
 
-                          if($_SESSION['uzivatel_admin']==0)echo Čtenář;
-                          if($_SESSION['uzivatel_admin']==5)echo Autor;
-
-if($_SESSION['uzivatel_admin']==1)echo Redaktor;
-if($_SESSION['uzivatel_admin']==2)echo Recenzent;
-if($_SESSION['uzivatel_admin']==3)echo Šéfredaktor;
-if($_SESSION['uzivatel_admin']==4)echo Admin;
+                          if($_SESSION['uzivatel_admin']==0)echo "<i class='fas fa-book-reader' title='Čtenář'></i>"; 
+                          if($_SESSION['uzivatel_admin']==5)echo "<i class='fas fa-at' title='Autor'></i>"; 
+if($_SESSION['uzivatel_admin']==1)echo "<i class='fas fa-newspaper' title='Redaktor'></i>";
+if($_SESSION['uzivatel_admin']==2)echo "<i class='fas fa-search'title='Recenzent'></i>"; 
+if($_SESSION['uzivatel_admin']==3)echo "<i class='fas fa-users-cog' title='Šéfredaktor'></i>";
+if($_SESSION['uzivatel_admin']==4)echo "<i class='fas fa-user-shield' title='Admin'></i>";
 
 ?>
 
@@ -177,6 +176,21 @@ $max=$radek["clanky_id"]+1;
                 <label for="autor">Autor:</label>
                 <input type="text" class="form-control" id="Autor_clanku" placeholder="Název autora" name="Autor_clanku" VALUE="<?php echo $name?>" readonly>
             </div>
+             <div class="form-group">
+              <p>Číslo časopisu</p>
+             <select class="form-control" name="cislo"  >
+
+                 <option value="listopad">Listopad</option>
+
+                 <option value="prosinec">Prosinec</option>
+
+                 <option value="leden">Leden</option>
+
+                 <option value="unor">Únor</option>
+
+              </select>
+             </div>
+
                         <div class="form-group">
                <input type="file" class="btn-light" name="fileToUpload" id="fileToUpload" multiple accept=".docx,.doc,.pdf">
            

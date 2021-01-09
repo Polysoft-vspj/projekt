@@ -1,16 +1,32 @@
 <?php
 
+
+
 header('Content-Type: text/html; charset=UTF-8');
+
+
 
 // Starting the session, to use and
 
+
+
 // store data in session variable
+
+
 
 session_start();
 
+
+
 if (!IsSet($nazev)) $nazev="";
 
+
+
   if (!IsSet($orderby)) $orderby="";
+
+
+
+
 
 
 
@@ -18,9 +34,19 @@ if (!IsSet($nazev)) $nazev="";
 
 
 
+
+
+
+
 ?>
 
+
+
 <!DOCTYPE html>
+
+
+
+
 
 
 
@@ -32,17 +58,37 @@ if (!IsSet($nazev)) $nazev="";
 
 
 
+
+
+
+
+
+
+
+
 <head>
+
+
+
+
 
 
 
          <style>
 
+
+
     #clanky_redaktor{
+
+
 
 visibility: hidden;
 
+
+
 }
+
+
 
 </style>
 
@@ -50,27 +96,57 @@ visibility: hidden;
 
 
 
+
+
+
+
+
+
  ?>
 
- 
+
 
  
 
+
+
  
+
+
+
+ 
+
+
 
   <?php if($_SESSION['uzivatel_admin']==1 ){ ?>
 
 
 
+
+
+
+
    <style>
+
+
 
    #clanky_redaktor{
 
+
+
 visibility: visible;
+
+
 
 }
 
+
+
 </style>
+
+
+
+
 
 
 
@@ -78,23 +154,47 @@ visibility: visible;
 
 
 
+
+
+
+
  ?>
 
+
+
  
+
+
 
    <?php if($_SESSION['uzivatel_admin']==4 ){ ?>
 
 
 
+
+
+
+
    <style>
+
+
 
    #clanky_redaktor{
 
+
+
 visibility: visible;
+
+
 
 }
 
+
+
 </style>
+
+
+
+
 
 
 
@@ -102,7 +202,17 @@ visibility: visible;
 
 
 
+
+
+
+
  ?>
+
+
+
+
+
+
 
 
 
@@ -112,7 +222,15 @@ visibility: visible;
 
 
 
+
+
+
+
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+
 
 
 
@@ -120,7 +238,19 @@ visibility: visible;
 
 
 
+
+
+
+
   <meta name="author" content="Polysoft">
+
+
+
+
+
+
+
+
 
 
 
@@ -136,7 +266,19 @@ visibility: visible;
 
 
 
+
+
+
+
+
+
+
+
   <!-- Bootstrap -->
+
+
+
+
 
 
 
@@ -148,7 +290,19 @@ visibility: visible;
 
 
 
+
+
+
+
+
+
+
+
   <!-- Vlastni css -->
+
+
+
+
 
 
 
@@ -156,21 +310,53 @@ visibility: visible;
 
 
 
+
+
+
+
 <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+
+
 
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
 
+
+
 <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+
+
 
 <link rel="manifest" href="../../site.webmanifest">
 
+
+
 <link href="css/all.css" rel="stylesheet">
+
+
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -192,7 +378,23 @@ visibility: visible;
 
 
 
+
+
+
+
+
+
+
+
 <body id="page-top">
+
+
+
+
+
+
+
+
 
 
 
@@ -204,7 +406,15 @@ visibility: visible;
 
 
 
+
+
+
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+
+
+
+
 
 
 
@@ -212,7 +422,15 @@ visibility: visible;
 
 
 
+
+
+
+
       <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="../img/logo.png" alt="logo" width="300px"></a>
+
+
+
+
 
 
 
@@ -220,7 +438,15 @@ visibility: visible;
 
 
 
+
+
+
+
         <span class="navbar-toggler-icon"></span>
+
+
+
+
 
 
 
@@ -228,7 +454,15 @@ visibility: visible;
 
 
 
+
+
+
+
       <div class="collapse navbar-collapse" id="navbarResponsive">
+
+
+
+
 
 
 
@@ -236,7 +470,15 @@ visibility: visible;
 
 
 
+
+
+
+
            <li class="nav-item">
+
+
+
+
 
 
 
@@ -244,7 +486,15 @@ visibility: visible;
 
 
 
+
+
+
+
           </li> 
+
+
+
+
 
 
 
@@ -252,25 +502,40 @@ visibility: visible;
 
 
 
+
+
+
+
             <?php
+
+
+
+
 
 
 
              if(isset($_SESSION['uzivatel_id'])){ ?>
 
+
+
                 <a href="../login/odhlaseni.php"><button type="button" class="btn bg-danger text-light">Odhlásit</button></a>
+
+
 
                   <div style="color: white !important;"><b>Uživatel:&nbsp;<?php echo $_SESSION['uzivatel_jmeno'];?>&nbsp;|&nbsp;Oprávění:&nbsp;<?php
 
-if($_SESSION['uzivatel_admin']==0)echo Autor;
 
-if($_SESSION['uzivatel_admin']==1)echo Redaktor;
 
-if($_SESSION['uzivatel_admin']==2)echo Recenzent;
+if($_SESSION['uzivatel_admin']==0)echo "<i class='fas fa-book-reader' title='Čtenář'></i>"; 
+                          if($_SESSION['uzivatel_admin']==5)echo "<i class='fas fa-at' title='Autor'></i>"; 
+if($_SESSION['uzivatel_admin']==1)echo "<i class='fas fa-newspaper' title='Redaktor'></i>";
+if($_SESSION['uzivatel_admin']==2)echo "<i class='fas fa-search'title='Recenzent'></i>"; 
+if($_SESSION['uzivatel_admin']==3)echo "<i class='fas fa-users-cog' title='Šéfredaktor'></i>";
+if($_SESSION['uzivatel_admin']==4)echo "<i class='fas fa-user-shield' title='Admin'></i>";
 
-if($_SESSION['uzivatel_admin']==3)echo Šéfredaktor;
 
-if($_SESSION['uzivatel_admin']==4)echo Admin;
+
+
 
 
 
@@ -278,23 +543,47 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 
+
+
+
+
 </b></div>
+
+
 
  <?php if (isset($_GET['uzivatel_id']))
 
+
+
                 {
+
+
 
 	               session_destroy();
 
+
+
 	               header('Location: ../index.php');
+
+
 
 	               exit();
 
+
+
                 }}else{ ?>
+
+
 
                 <a href="../login/prihlaseni.php" ><button type="button" class="btn bg-danger text-light">Přihlásit</button></a>
 
+
+
             <?php } ?>
+
+
+
+
 
 
 
@@ -302,7 +591,15 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 
+
+
+
+
         </ul>
+
+
+
+
 
 
 
@@ -310,12 +607,29 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 
+
+
+
+
     </div>
+
+
 
 <a href="../index.php" ><button type="button" class="btn bg-danger text-light">Zpět na hlavní stránku</button></a>
 
 
+
+
+
   </nav>
+
+
+
+
+
+
+
+
 
 
 
@@ -330,7 +644,18 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 
+
+
+
+
+
+
+
   <section id="about">
+
+
+
+
 
 
 
@@ -338,11 +663,23 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 
+
+
+
+
       <div class="row">
 
 
 
+
+
+
+
         <div class="col-lg-8 mx-auto">
+
+
+
+
 
 
 
@@ -354,73 +691,159 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 
+
+
+
+
+
+
+
+
 <div class="content">
+
+
+
+
 
 
 
         <!-- Creating notification when the
 
+
+
                 user logs in -->
+
+
+
+
 
 
 
         <!-- Accessible only to the users that
 
+
+
                 have logged in already -->
+
+
 
         <?php if (isset($_SESSION['success'])) : ?>
 
+
+
             <div class="error success" >
+
+
 
                 <h3>
 
+
+
                     <?php
+
+
 
                         echo $_SESSION['success'];
 
+
+
                         unset($_SESSION['success']);
+
+
 
                     ?>
 
+
+
                 </h3>
+
+
 
             </div>
 
+
+
         <?php endif ?>
+
+
+
+
 
 
 
         <!-- information of the user logged in -->
 
+
+
         <!-- welcome message for the logged in user -->
+
+
 
         <?php  if (isset($_SESSION['username'])) : ?>
 
+
+
             <p>
+
+
 
                 Welcome
 
+
+
                 <strong>
+
+
 
                     <?php echo $_SESSION['username']; ?>
 
+
+
                 </strong>
 
+
+
             </p>
+
+
 
             <p>
 
+
+
                 <a href="index.php?logout='1'" style="color: red;">
+
+
 
                     Click here to Logout
 
+
+
                 </a>
+
+
 
             </p>
 
+
+
         <?php endif ?>
 
+
+
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -436,7 +859,15 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 
+
+
+
+
        <div class="modal-dialog">
+
+
+
+
 
 
 
@@ -444,11 +875,27 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 
+
+
+
+
         <div class="modal-header">
 
 
 
+
+
+
+
          <div class="box">
+
+
+
+
+
+
+
+
 
 
 
@@ -464,7 +911,23 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 
+
+
+
+
+
+
+
+
   <form action="">
+
+
+
+
+
+
+
+
 
 
 
@@ -480,7 +943,23 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 
+
+
+
+
+
+
+
+
     <div class="login-form">
+
+
+
+
+
+
+
+
 
 
 
@@ -492,7 +971,19 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 
+
+
+
+
       <input type="text" id="username" placeholder="Username">
+
+
+
+
+
+
+
+
 
 
 
@@ -504,6 +995,10 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 
+
+
+
+
       <input type="password" id="password" placeholder="Password">
 
 
@@ -512,7 +1007,23 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 
+
+
+
+
+
+
+
+
     </div>
+
+
+
+
+
+
+
+
 
 
 
@@ -528,7 +1039,23 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 
+
+
+
+
+
+
+
+
     <div class="register-form">
+
+
+
+
+
+
+
+
 
 
 
@@ -540,7 +1067,19 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 
+
+
+
+
       <input disabled type="text" id="first-name" placeholder="First Name">
+
+
+
+
+
+
+
+
 
 
 
@@ -552,7 +1091,19 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 
+
+
+
+
       <input disabled type="text" id="last-name" placeholder="Last Name">
+
+
+
+
+
+
+
+
 
 
 
@@ -564,7 +1115,19 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 
+
+
+
+
       <input disabled type="text" id="email" placeholder="E-mail Address">
+
+
+
+
+
+
+
+
 
 
 
@@ -576,7 +1139,19 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 
+
+
+
+
       <input disabled type="text" id="confirm-email" placeholder="Confirm E-mail Address">
+
+
+
+
+
+
+
+
 
 
 
@@ -588,11 +1163,27 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 
+
+
+
+
         <label for="captcha">What is <strong>10 + 3</strong>?</label>
 
 
 
+
+
+
+
         <input disabled type="text" id="captcha" placeholder="Your answer">
+
+
+
+
+
+
+
+
 
 
 
@@ -608,7 +1199,23 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 
+
+
+
+
+
+
+
+
     </div>
+
+
+
+
+
+
+
+
 
 
 
@@ -624,7 +1231,23 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 
+
+
+
+
+
+
+
+
     <input type="submit" id="submit" value="Login">
+
+
+
+
+
+
+
+
 
 
 
@@ -640,7 +1263,19 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 
+
+
+
+
+
+
+
+
     <a href="#" class="register">Register!</a>
+
+
+
+
 
 
 
@@ -652,11 +1287,27 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 
+
+
+
+
+
+
+
+
   </form>
 
 
 
+
+
+
+
 </div>
+
+
+
+
 
 
 
@@ -668,15 +1319,43 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 
+
+
+
+
+
+
+
+
            </div>
 
 
 
+
+
+
+
                      </div>
 
 
 
+
+
+
+
                      </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -689,10 +1368,18 @@ if($_SESSION['uzivatel_admin']==4)echo Admin;
 
 
 <hr > 
+
 </section>
+
 <section>       
 
+
+
 <div class="container" id ="clanky_redaktor"  style=" position: relative;  top: 20%;right:10%">
+
+
+
+
 
 
 
@@ -700,27 +1387,59 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
 <FORM ACTION=index.php method=get>
 
+
+
     <div class="input-group mb-3 w-50" >
+
+
 
         <INPUT type="text"  class="form-control" placeholder="Nazev" NAME=Nazev SIZE=11 VALUE="<?php echo $_GET[Nazev] ?>">
 
 
 
+
+
+
+
         <div class="input-group-append">
+
+
 
             <INPUT TYPE=SUBMIT type="text" class="form-control" placeholder="Nazev" VALUE="hledej">
 
+
+
         </div>
+
+
 
     </div>
 
 
 
+
+
+
+
     <INPUT TYPE=HIDDEN type="text"  placeholder="Názvu" NAME=orderby VALUE="<?php echo $_GET[orderby]?>">
 
+
+
 </FORM>
+
+
+
+
+
+
+
+
 
 
 
@@ -732,29 +1451,59 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
     <i class="fas fa-angle-down"> Seřadit vzestupně</i>
+
+
+
+
 
 
 
 <HR>
 
+
+
 <?php
+
+
 
 											//30
 
+
+
 											function TlacitkoProRazeni( $polozka, $popis ) {
+
+
 
 												global $Nazev;
 
+
+
 												return "<A HREF='?orderby=$polozka&Nazev=" .
+
+
 
 												URLEncode( $_GET[ Nazev ] ) . "'>" . "<i class=\"fas fa-angle-down\"></i></A>&nbsp;" . $popis . "&nbsp;" .
 
+
+
 												"<A HREF='?orderby=$polozka+DESC&Nazev=" .
+
+
 
 												URLEncode( $_GET[ Nazev ] ) . "'>" . "<i class=\"fas fa-angle-up\"></i></A>";
 
+
+
 											}
+
+
+
+
 
 
 
@@ -762,23 +1511,47 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
 											if ( $_GET[ Nazev ] != "" )
+
+
 
 												$Podminka = "WHERE Nazev_clanku LIKE '" . AddSlashes( $_GET[ Nazev ] ) . "%' AND odeslat_autor like '0'";
 
+
+
 											else
+
+
 
 												$Podminka = "  WHERE odeslat_autor like '0'";
 
 
 
+
+
+
+
 											if ( $_GET[ orderby ] != "" )
+
+
 
 												$Orderby = "ORDER BY $_GET[orderby]";
 
+
+
 											else
 
+
+
 												$Orderby = "ORDER BY Nazev_clanku";
+
+
+
+
 
 
 
@@ -788,27 +1561,55 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
+
+
 											$vysledek = mysqli_query( $spojeni, $sql );
 
-											echo "<TABLE   class='table' class='table-striped' BORDER=0 CELLSPACING=0 CELLPADDING=4>\n";
+
+
+											echo "<TABLE   class='table' class='table-striped' BORDER=0 CELLSPACING=0 CELLPADDING=0>\n";
+
+
 
 											echo "<TR BGCOLOR=lightgrey VALIGN=TOP style=\"text-align:center\" >\n";
 
+
+
 											echo "<TH>" . TlacitkoProRazeni( "clanky_id", "ID" ) . "</TH>\n";
+
+
 
 											echo "<TH>" . TlacitkoProRazeni( "Nazev_clanku", "Název" ) . "</TH>\n";
 
+
+
 											echo "<TH>" . TlacitkoProRazeni( "Autor_clanku", "<i class=\"far fa-user\" data-toggle=\"tooltip\" title=\"Autor článku\" ></i>" ) . "</TH>\n";
+
+
 
 											echo "<TH>" . TlacitkoProRazeni( "url_clanku", "<i class=\"fas fa-paperclip\" data-toggle=\"tooltip\" title=\"URL článku\" ></i>" ) . "</TH>\n";
 
+
+
 											echo "<TH>" . TlacitkoProRazeni( "Jmeno_recenzenta", "<i class=\"fas fa-user\" data-toggle=\"tooltip\" title=\"Jméno recenzenta\" ></i>" ) . "</TH>\n";
+
+
 
 											//echo "<TH>" . TlacitkoProRazeni( "url_recenze", "URL recenze" ) . "</TH>\n";
 
+
+
 											echo "<TH>" . TlacitkoProRazeni( "Stav", "<i class=\"fas fa-info-circle\" data-toggle=\"tooltip\" title=\"Stav recenze\" ></i>" ) . "</TH>\n";
 
+
+
                                             	
+
+
 
 											echo "<TH colspan='5'></TH></tr>\n";
 
@@ -816,7 +1617,17 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
+
+
 											if ( mysqli_num_rows( $vysledek ) > 0 ) {
+
+
+
+
 
 
 
@@ -828,73 +1639,155 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
+
+
+
+
 													$oc = $zaznam[ "clanky_id" ];
+
+
 
                                                     
 
+
+
 												echo "<TD  ALIGN=CENTER>" ."&nbsp;&nbsp;&nbsp;&nbsp;". $zaznam[ "clanky_id" ] ."&nbsp;&nbsp;&nbsp;&nbsp;". "</TD>";
 
-												echo "<TD  ALIGN=CENTER>" . $zaznam[ "Nazev_clanku" ] . "</TD>";
+
+
+												echo "<TD  ALIGN=CENTER>" ."&nbsp;&nbsp;". $zaznam[ "Nazev_clanku" ] ."&nbsp;&nbsp;&nbsp;&nbsp;". "</TD>";
+
+
 
 												echo "<TD  ALIGN=CENTER>" . $zaznam[ "Autor_clanku" ] . "</TD>";
 
+
+
 												echo "<TD  ALIGN=CENTER><a href=\"../uploads/" . $zaznam[ "url_clanku" ]. "\" download> Download </TD>";
+
+
 
 												echo "<TD  ALIGN=CENTER>" . $zaznam[ "Jmeno_recenzenta" ] . "</TD>";
 
+
+
 												//echo "<TD  ALIGN=CENTER>" . $zaznam[ "url_recenze" ] . "</TD>";
 
+
+
                         						echo "<TD  ALIGN=CENTER>" . $zaznam[ "Stav" ] . "</TD>";
+
+
 
                                                   
 
 
 
+
+
+
+
 												echo "<TD ALIGN=CENTER>" . "<A HREF='upravit.php?oc=$oc' class=\"btn btn-secondary\">Upravit</A></TD>";
+
+
 
 												echo "<TD ALIGN=CENTER>" . "<A HREF='smazat.php?oc=$oc' class=\"btn btn-danger\">Smazat</A></TD>";
 
+
+
                                                 echo "<TD ALIGN=CENTER>" . "<A HREF='update_autor.php?oc=$oc' class=\"btn btn-warning\">Poslat autorovi</A></TD>";
+
+
 
                                                 echo "<TD ALIGN=CENTER>" . "<A HREF='update_nerozhodne.php?oc=$oc' class=\"btn btn-success\">Vyhodnotit nerozhodné</A></TD>";                                              
 
+
+
                                                  
+
                                                                     echo "<form action='update_poslat_recenzentovi.php?oc=$oc' method='post' enctype='multipart/form-data' style='text-align: left'>"  ;
+
                                                  
+
+
 
                                                          echo "<TD ALIGN=CENTER>" . "<input type='date' id='deadline' name='deadline' required pattern='\d{4}-\d{2}-\d{2}'><br>";   
 
+
+
                                                    	       echo "<input type='submit' class='btn btn-info' value='Poslat Recenzentovi' name='submit'>";  
+
+
 
                                                               echo"</form>";                                
 
+
+
                                                // echo "<A HREF='update_poslat_recenzentovi.php?oc=$oc' class=\"btn btn-info\">Poslat Recenzentovi</A></TD>"; 
+
+
 
                                                 //php napiš   dny
 
+
+
                                                 
+
+
 
                                                //echo "<TD ALIGN=CENTER>"."<label for='tentacles'>Počet dnů:</label>"
 
+
+
                                                //echo "<input type='number' placeholder='Dny'id='tentacles' name='tentacles'  min='1' max='100'> </TD>"
+
+
 
                                                     // echo " </TD>" ;
 
+
+
                                                
+
+
 
 												echo "<TR VALIGN=TOP>";
 
 
 
+
+
+
+
 												$i = $i + 1;
+
+
 
 												endwhile;
 
+
+
 											} else {
+
+
 
 												echo "0 nalezených záznamů";
 
+
+
 											}
+
+
+
+
+
+
+
+
 
 
 
@@ -906,7 +1799,13 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
 											mysqli_close( $spojeni );
+
+
 
 											?>
 
@@ -914,11 +1813,23 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
+
+
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
+
+
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
 
 </div>
 
@@ -944,7 +1855,35 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
+
+
+
+
 
 
 
@@ -952,11 +1891,27 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
     </div>
+
             
 
 
+
+
+
   </section>
+
+
+
+
+
+
+
+
 
 
 
@@ -968,7 +1923,15 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
     <div class="container">
+
+
+
+
 
 
 
@@ -976,7 +1939,15 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
         <div class="col-lg-8 mx-auto">
+
+
+
+
 
 
 
@@ -984,7 +1955,15 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
           <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut optio velit inventore, expedita quo laboriosam possimus ea consequatur vitae, doloribus consequuntur ex. Nemo assumenda laborum vel, labore ut velit dignissimos.</p>
+
+
+
+
 
 
 
@@ -992,11 +1971,23 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
       </div>
 
 
 
+
+
+
+
     </div>
+
+
+
+
 
 
 
@@ -1008,7 +1999,19 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
+
+
+
+
   <section id="">
+
+
+
+
 
 
 
@@ -1016,7 +2019,15 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
       <div class="row">
+
+
+
+
 
 
 
@@ -1024,7 +2035,15 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
           <h2>Login us</h2>
+
+
+
+
 
 
 
@@ -1032,7 +2051,15 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
         </div>
+
+
+
+
 
 
 
@@ -1040,7 +2067,15 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
     </div>
+
+
+
+
 
 
 
@@ -1052,7 +2087,19 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
+
+
+
+
   <!-- Footer -->
+
+
+
+
 
 
 
@@ -1060,7 +2107,15 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
     <div class="container">
+
+
+
+
 
 
 
@@ -1068,11 +2123,23 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
     </div>
 
 
 
+
+
+
+
     <!-- /.container -->
+
+
+
+
 
 
 
@@ -1084,11 +2151,27 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
+
+
+
+
   <!-- Bootstrap core JavaScript -->
 
 
 
+
+
+
+
   <script src="vendor/jquery/jquery.min.js"></script>
+
+
+
+
 
 
 
@@ -1100,18 +2183,42 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
+
+
+
+
   <!-- Plugin JavaScript -->
+
+
+
+
 
 
 
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
 
+
+
+
 <script>
+
                 $(document).ready(function () {
+
                     $('[data-toggle="tooltip"]').tooltip();
+
                 });
+
             </script>
+
+
+
+
+
 
 
 
@@ -1120,7 +2227,19 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
   <script src="js/scrolling-nav.js"></script>
+
+
+
+
+
+
+
+
 
 
 
@@ -1136,5 +2255,15 @@ Hledání podle názvu článku<BR />
 
 
 
+
+
+
+
+
+
+
+
 </html>
+
+
 

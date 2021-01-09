@@ -835,7 +835,7 @@ Hledání podle názvu článku<BR />
 
 												echo "<TD  ALIGN=CENTER>" ."&nbsp;&nbsp;&nbsp;&nbsp;". $zaznam[ "clanky_id" ] ."&nbsp;&nbsp;&nbsp;&nbsp;". "</TD>";
 
-												echo "<TD  ALIGN=CENTER>" . $zaznam[ "Nazev_clanku" ] . "</TD>";
+												echo "<TD  ALIGN=CENTER>" ."&nbsp;&nbsp;". $zaznam[ "Nazev_clanku" ] ."&nbsp;&nbsp;&nbsp;&nbsp;". "</TD>";
 
 												echo "<TD  ALIGN=CENTER>" . $zaznam[ "Autor_clanku" ] . "</TD>";
 
